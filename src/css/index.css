@@ -1,0 +1,61 @@
+@import url('https://fonts.googleapis.com/css2?family=Ubuntu&display=swap');
+
+html, body {
+    margin: 0;
+    font-size: 62.5%;
+}
+
+body {
+    display: flex;
+    flex-direction: row;
+
+    height: 100vh;
+    background-color: #3f3f3f;
+}
+
+h1, a, p, li {
+    font-family: Ubuntu;
+    text-decoration: none;
+    margin: 0;
+    color: white;
+}
+
+a:hover {
+    color: green;
+}
+
+ul {
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+}
+
+main {
+    background-color: #2d2d2d;
+    flex: 1;
+    margin: 12px;
+    border-radius: 2em;
+}
+
+nav {
+    margin: 12px 0 12px 12px;
+
+    & ul {
+        background-color: #2d2d2d;
+        padding: 12px 0;
+        width: 80px;
+        border-radius: 2em;
+
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+    }
+
+    & li {
+        font-size: 2.4rem;
+    }
+
+    & li:not(:first-child) {
+        margin-top: 24px;
+    }
+}
