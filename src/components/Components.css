@@ -1,0 +1,31 @@
+#bookdisplay {
+    min-width: 50%;
+}
+
+#booklist {
+    min-width: 50%;
+    overflow: scroll;
+    overflow-x: hidden;
+
+    display: flex;
+    flex-direction: column;
+
+    & :not(:last-child) { border-bottom: 1px solid rgb(255,255,255, 25%); }
+}
+
+.booklistitem {
+    min-height: 48px;
+
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+
+    & .bli-title {
+        margin: 0 12px;
+        font-size: 2rem;
+        text-align: left;
+        overflow: hidden;
+        white-space: nowrap;
+        text-overflow: ellipsis;
+    }
+}
