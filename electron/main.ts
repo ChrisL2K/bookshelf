@@ -1,5 +1,6 @@
-import { app, BrowserWindow } from 'electron'
+import { app, BrowserWindow, ipcMain } from 'electron'
 import path from 'node:path'
+import Store from 'electron-store'
 
 // The built directory structure
 //
@@ -12,6 +13,15 @@ import path from 'node:path'
 // │
 process.env.DIST = path.join(__dirname, '../dist')
 process.env.VITE_PUBLIC = app.isPackaged ? process.env.DIST : path.join(process.env.DIST, '../public')
+
+
+const store = new Store({ name: "bookstore" })
+
+ipcMain.handle('get-all-books', (event) => { return store.store });
+
+ipcMain.handle('set-book', (event, key, value) => { store.set(key, value) })
+
+ipcMain.handle('delete-book', (event, key) => { store.delete(key) })
 
 
 let win: BrowserWindow | null

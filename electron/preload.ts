@@ -3,6 +3,12 @@ import { contextBridge, ipcRenderer } from 'electron'
 // --------- Expose some API to the Renderer process ---------
 contextBridge.exposeInMainWorld('ipcRenderer', withPrototype(ipcRenderer))
 
+contextBridge.exposeInMainWorld('electron', {
+  getAllBooks: (event: Electron.IpcMainInvokeEvent) => ipcRenderer.invoke('get-all-books'),
+  setBook: (event: Electron.IpcMainInvokeEvent, key: any, value: any) => ipcRenderer.invoke('set-book', key, value),
+  deleteBook: (event: Electron.IpcMainInvokeEvent, key: any) => ipcRenderer.invoke('delete-book', key)
+})
+
 // `exposeInMainWorld` can't detect attributes and methods of `prototype`, manually patching it.
 function withPrototype(obj: Record<string, any>) {
   const protos = Object.getPrototypeOf(obj)

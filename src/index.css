@@ -11,3 +11,13 @@ html, body {
     font-size: 62.5%;
     font-family: Ubuntu;
 }
+
+.flex-col {
+    display: flex;
+	flex-direction: column;
+}
+
+.flex-row {
+    display: flex;
+	flex-direction: row;
+}

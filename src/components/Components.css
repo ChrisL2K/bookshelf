@@ -1,23 +1,87 @@
+#addform {
+    align-items: flex-start;
+    gap: 20px;
+
+    & div {
+        width: 100%;
+
+        justify-content: space-between;
+        align-items: center;
+        gap: 12px;
+    }
+
+    & label {
+        font-size: 2rem;
+    }
+
+    & input {
+        padding: 4px;
+        font-size: 1.6rem;
+    }
+
+    & input[type="submit"] {
+        padding: 6px;
+        border: 0;
+        border-radius: 100vh;
+        background-color: #00c896;
+        font-size: 1.6rem;
+        font-family: Ubuntu;
+        font-weight: bold;
+    }
+
+    & #form-radios {
+        justify-content: flex-end;
+
+        & input {
+            margin-left: 4px;
+        }
+    }
+
+    & #input-genres {
+        align-items: flex-start;
+    }
+}
+
 #bookdisplay {
+    border-left: 1px solid rgb(255,255,255, 5%);
     min-width: 50%;
 }
 
 #booklist {
+    border-right: 1px solid rgb(255,255,255, 5%);
     min-width: 50%;
-    overflow: scroll;
+    overflow-y: auto;
     overflow-x: hidden;
 
-    display: flex;
-    flex-direction: column;
+    & :not(:last-child) { border-bottom: 1px solid rgb(255,255,255, 10%); }
+}
 
-    & :not(:last-child) { border-bottom: 1px solid rgb(255,255,255, 25%); }
+#booklist-empty {
+    border-right: 1px solid rgb(255,255,255, 5%);
+    gap: 10px;
+    min-width: 50%;
+
+    align-items: center;
+    justify-content: center;
+
+    & h1 {
+        font-size: 2rem;
+    }
+
+    & h2 {
+        font-size: 1.6rem;
+    }
+
+    & button {
+        height: 50px;
+        width: 50px;
+        color: black;
+    }
 }
 
 .booklistitem {
     min-height: 48px;
 
-    display: flex;
-    flex-direction: row;
     align-items: center;
 
     & .bli-title {

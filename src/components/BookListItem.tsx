@@ -1,11 +1,11 @@
+import { Book } from '../types';
 import './Components.css';
-import {Book} from '../types.tsx';
 
-function BookListItem({title} : Book) {
+function BookListItem(book: Book) {
     return (
         <>
-            <div className="booklistitem">
-                <div className="bli-title">{ title }</div>
+            <div className="booklistitem flex-row">
+                <div className="bli-title">{ book.title }</div>
             </div>
         </>
     );
