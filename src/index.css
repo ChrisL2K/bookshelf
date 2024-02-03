@@ -27,6 +27,12 @@ input {
     font-weight: bold;
 }
 
+.separator-horizontal {
+    background-color: rgb(255,255,255, 25%);
+    height: 1px;
+    width: 100%;
+}
+
 .separator-vertical {
     background-color: rgb(255,255,255, 25%);
     width: 1px;

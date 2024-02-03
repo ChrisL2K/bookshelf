@@ -1,16 +1,19 @@
 import './App.css'
 import BookList from './BookList.jsx';
 import BookDisplay from './BookDisplay.jsx';
-import FormDialog from './FormDialog.js';
-import { Book, FormState, FormType } from '../types.js';
+import FormDialog from './FormDialog.jsx';
+import NavButton from './NavButton.jsx';
+import { Book, FormState, FormStatus, FormType } from '../types.js';
 import { useState } from 'react';
 import { createBook } from '../modules/bookHandler.js';
 
 function App() {
 	const [booksList, setBookList] = useState<Book[]>([]);
 	const [activeBook, setActiveBook] = useState<Book>();
-	const [formType, setFormType] = useState<FormType>(FormType.Create);
-	const [formState, setFormState] = useState<FormState>(FormState.Closed);
+	const [formState, setFormState] = useState<FormState>({
+		type: FormType.Create,
+		status: FormStatus.Closed
+	});
 
 
 	/* state management */
@@ -53,12 +56,16 @@ function App() {
 	}
 
 	const openForm = (type: FormType) => {
-		if (formType !== type) setFormType(type);
-
-		setFormState(FormState.Open)
+		setFormState({
+			type: type,
+			status: FormStatus.Open
+		});
 	}
 
-	const closeForm = () => setFormState(FormState.Closed);
+	const closeForm = () => setFormState((state) => ({
+		...state,
+		status: FormStatus.Closed
+	}));
 
 
 	/* prop groups */
@@ -74,8 +81,8 @@ function App() {
 	}
 
 	const formDialogProps = {
-		book: formType === FormType.Edit ? activeBook : undefined,
-		state: formState,
+		book: formState.type === FormType.Edit ? activeBook : undefined,
+		status: formState.status,
 		fnSubmit: submitAction,
 		fnClose: closeForm
 	}
@@ -85,15 +92,13 @@ function App() {
 		<>
 			<FormDialog prop={ formDialogProps } />
 			<nav className="flex-col">
-				<div title="Library"
-					className="margin-top24 nav-icon">
-					<img src="src/assets/Library.png" />
-				</div>
-				<div title="Add book"
-					className="margin-top24 nav-icon"
-					onClick={() => openForm(FormType.Create)}>
-					<img src="src/assets/Add.png" />
-				</div>
+				<NavButton title="Add book"
+					imgPath="src/assets/Add.png"
+					fn={() => openForm(FormType.Create)} />
+				<div className="separator-horizontal maxw80p"></div>
+				{/* <NavButton title="Backlog mode" />
+				<NavButton title="Sort list" />
+				<NavButton title="Add filter" /> */}
 			</nav>
 			<main className="flex-row">
 				<BookList prop={ bookListProps } />
