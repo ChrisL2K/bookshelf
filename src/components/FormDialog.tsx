@@ -2,7 +2,7 @@ import { RefObject, useRef } from 'react';
 import './Components.css';
 import { Book, FormStatus, BookStatus } from '../types';
 
-function AddForm({ prop }: {
+function FormDialog({ prop }: {
     prop: {
         book: Book | undefined,
         status: FormStatus,
@@ -126,4 +126,4 @@ function AddForm({ prop }: {
     );
 }
 
-export default AddForm;
+export default FormDialog;

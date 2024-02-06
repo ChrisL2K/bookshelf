@@ -20,7 +20,8 @@ export function createBook(data: FormData, id: string | null) {
 		title: data.get("title") as string,
 		author: data.get("author") as string,
 		genres: genres,
-		status: data.get("status") as string == ("read") ? BookStatus.Read : BookStatus.Unread
+		status: data.get("status") as string == ("read") ? BookStatus.Read : BookStatus.Unread,
+		dateAdded: new Date()
 	}
 
 	return book;

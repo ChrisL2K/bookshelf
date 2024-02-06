@@ -1,19 +1,105 @@
 [
     {
-        "title": "",
-        "author": "",
+        "id": "1",
+        "title": "Oliver Twist",
+        "author": "Charles Dickens",
         "genres":
             [
-                ""
+                "Classic",
+                "Victorian"
+            ],
+        "status": "read"
+    },
+    {
+        "id": "2",
+        "title": "Halo: The Flood",
+        "author": "William C. Dietz",
+        "genres":
+            [
+                "Science Fiction",
+                "Military",
+                "Space"
             ],
         "status": "unread"
     },
     {
-        "title": "",
-        "author": "",
+        "id": "3",
+        "title": "La Route de Woodbury",
+        "author": "Robert Kirkman",
         "genres":
             [
-                ""
+                "Horror",
+                "Zombies",
+                "Thriller"
+            ],
+        "status": "read"
+    },
+    {
+        "id": "4",
+        "title": "L'arc-En-Cercle",
+        "author": "Daniel Sernine",
+        "genres":
+            [
+                "Youth",
+                "Mistery"
+            ],
+        "status": "unread"
+    },
+    {
+        "id": "5",
+        "title": "Halo: The Fall of Reach",
+        "author": "Eric Nylund",
+        "genres":
+            [
+                "Science Fiction",
+                "Military",
+                "Space"
+            ],
+        "status": "read"
+    },
+    {
+        "id": "6",
+        "title": "Psycho killer",
+        "author": "Anonymous",
+        "genres":
+            [
+                "Horror",
+                "Thriller",
+                "Detective"
+            ],
+        "status": "read"
+    },
+    {
+        "id": "7",
+        "title": "Childhood's End",
+        "author": "Arthur C. Clarke",
+        "genres":
+            [
+                "Classic",
+                "Science Fiction"
+            ],
+        "status": "unread"
+    },
+    {
+        "id": "8",
+        "title": "Aftershocks",
+        "author": "Marko Kloos",
+        "genres":
+            [
+                "Science Fiction",
+                "Military",
+                "Space"
+            ],
+        "status": "read"
+    },
+    {
+        "id": "9",
+        "title": "The Idiot",
+        "author": "Fyodor Dostoevsky",
+        "genres":
+            [
+                "Classic",
+                "Philosophy"
             ],
         "status": "unread"
     }
