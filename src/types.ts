@@ -3,7 +3,7 @@ export enum BookStatus { Read, Unread }
 export enum FormStatus { Open, Closed }
 export enum FormType { Create, Edit }
 
-export enum SortMode { AtoZ, ZtoA }
+export enum SortMode { AtoZ, ZtoA, EarliestAdded, LatestAdded }
 
 export enum BLRAction { Add, Remove, Edit, Fill, Display }
 
@@ -29,4 +29,11 @@ export type BookState = {
 export type FormState = {
     type: FormType,
     status: FormStatus
+}
+
+export type SortState = {
+    nextType: SortMode,
+    title: string,
+    imgPath: string,
+    nextFn: (array: Book[]) => Book[]
 }

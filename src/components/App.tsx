@@ -3,17 +3,24 @@ import BookList from './BookList.jsx';
 import BookDisplay from './BookDisplay.jsx';
 import FormDialog from './FormDialog.jsx';
 import NavButton from './NavButton.jsx';
-import { BLRAction, Book, BookAction, BookState, BookStatus, FormStatus, FormType } from '../types.js';
+import { BLRAction, Book, BookAction, BookState, BookStatus, FormStatus, FormType, SortMode, SortState } from '../types.js';
 import { useEffect, useReducer, useState } from 'react';
 import { createBook } from '../modules/bookHandler.js';
+import sortList from '../modules/sorting.js';
 
 export default function App() {
-	const [bookState, bookDispatch] = useReducer<(state: BookState, action: BookAction) => BookState>(bookStateReducer, { list: [], active: undefined });
 	const [formState, setFormState] = useState({ type: FormType.Create, status: FormStatus.Closed });
+	const [bookState, bookDispatch] = useReducer<(state: BookState, action: BookAction) => BookState>(bookStateReducer, { list: [], active: undefined });
+	const [sortState, sortDispatch] = useReducer<(state: SortState) => SortState>(sortStateReducer, {
+		nextType: SortMode.LatestAdded,
+		title: "Sorted by date added: oldest entries first",
+		imgPath: "src/assets/Sort.png",
+		nextFn: (array: Book[]) => sortList(array, SortMode.LatestAdded)
+	});
 
 	// TEST DATA, REMOVE BEFORE BUILD
 	useEffect(() => {
-		fetch("public/test_data.json")
+		fetch("test_data.json")
 		.then((response) => { return response.json() })
 		.then((json) => {
 			const books: Book[] = [];
@@ -21,6 +28,8 @@ export default function App() {
 				obj.status = obj.status === "read" ?
 					BookStatus.Read :
 					BookStatus.Unread;
+
+				obj.dateAdded = new Date(obj.dateAdded);
 
 				books.push(obj);
 			}
@@ -68,11 +77,14 @@ export default function App() {
 				<NavButton title="Add book"
 					imgPath="src/assets/Add.png"
 					fn={() => setFormState({ type: FormType.Create, status: FormStatus.Open })} />
-				<div className="separator-horizontal maxw80p"></div>
+				<div className="separator-horizontal margin-top24 maxw80p"></div>
 				{/* <NavButton title="Backlog mode" /> */}
-				{/* <NavButton title="Sort list"
-					imgPath="src/assets/Sort.png"
-					fn={() => sort(bookState.list, SortMode.AtoZ)} /> */}
+				<NavButton title={ sortState.title }
+					imgPath={ sortState.imgPath }
+					fn={() => {
+						bookDispatch({ type: BLRAction.Fill, payload: sortState.nextFn(bookState.list) });
+						sortDispatch();
+					}} />
 				{/* <NavButton title="Add filter" /> */}
 			</nav>
 			<main className="flex-row">
@@ -97,7 +109,6 @@ function bookStateReducer(
 				active: state.active
 			};
 		}
-
 		// Edit active book
 		case BLRAction.Edit: {
 			const book = action.payload as Book;
@@ -109,7 +120,6 @@ function bookStateReducer(
 				active: book
 			};
 		}
-
 		// Remove book
 		case BLRAction.Remove: {
 			const book = action.payload as Book;
@@ -118,7 +128,6 @@ function bookStateReducer(
 				active: undefined
 			}
 		}
-
 		// Fill or replace entire list
 		case BLRAction.Fill: {
 			const list = action.payload as Book[];
@@ -127,7 +136,6 @@ function bookStateReducer(
 				active: state.active
 			}
 		}
-
 		// Display book
 		case BLRAction.Display: {
 			const book = action.payload as Book;
@@ -136,5 +144,38 @@ function bookStateReducer(
 				active: book
 			}
 		}
+	}
+}
+
+function sortStateReducer(state: SortState) {
+	switch (state.nextType) {
+		case SortMode.EarliestAdded:
+			return {
+				nextType: SortMode.LatestAdded,
+				title: "Sorted by date added: oldest entries first",
+				imgPath: "src/assets/Sort.png",
+				nextFn: (array: Book[]) => sortList(array, SortMode.LatestAdded)
+			};
+		case SortMode.LatestAdded:
+			return {
+				nextType: SortMode.AtoZ,
+				title: "Sorted by date added: most recent first",
+				imgPath: "src/assets/Sort.png",
+				nextFn: (array: Book[]) => sortList(array, SortMode.AtoZ)
+			};
+		case SortMode.AtoZ:
+			return {
+				nextType: SortMode.ZtoA,
+				title: "Sorted by title: ascending",
+				imgPath: "src/assets/Sort.png",
+				nextFn: (array: Book[]) => sortList(array, SortMode.ZtoA)
+			};
+		case SortMode.ZtoA:
+			return {
+				nextType: SortMode.EarliestAdded,
+				title: "Sorted by title: descending",
+				imgPath: "src/assets/Sort.png",
+				nextFn: (array: Book[]) => sortList(array, SortMode.EarliestAdded)
+			};
 	}
 }
