@@ -12,14 +12,14 @@ function BookList({ prop }: {
         return (
             <section className="booklist flex-col -list">
                 {prop.itemsList.map(book => (
-                    <BookListItem book={book} displayBook={prop.fnDisplay} />
+                    <BookListItem key={book.id} book={book} displayBook={prop.fnDisplay} />
                 ))}
             </section>
         );
     } else {
         return (
             <section className="booklist center-xy flex-col gap12">
-                <h1 className="fs20">😔</h1>
+                <h1 className="fs40 nf-icons">󰱬</h1>
                 <h1 className="fs20">Your bookshelf is lonely</h1>
                 <h2 className="fs16">Add some books and see it grow</h2>
             </section>

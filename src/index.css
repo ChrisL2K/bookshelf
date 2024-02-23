@@ -1,9 +1,25 @@
 @import url('https://fonts.googleapis.com/css2?family=Ubuntu&display=swap');
 
+@font-face {
+    font-family: 'NerdFont Icons';
+    src: url('./assets/MesloLGLNerdFontMono-Regular.ttf');
+}
+
 * { margin: 0; }
 
 :root {
     background-color: #2d2d2d;
+}
+
+::-webkit-scrollbar {
+    position: absolute;
+    width: 4px;
+    background-color: rgba(0,0,0, 0%);
+}
+
+::-webkit-scrollbar-thumb {
+    background-color: white;
+    border-radius: 100vh;
 }
 
 html, body {
@@ -56,6 +72,10 @@ input {
 .fs20 { font-size: 2rem; }
 .fs24 { font-size: 2.4rem; }
 .fs32 { font-size: 3.2rem; }
+.fs40 { font-size: 4rem; }
+
+/* global font settings */
+.nf-icons { font-family: NerdFont Icons; }
 
 
 /* gaps */

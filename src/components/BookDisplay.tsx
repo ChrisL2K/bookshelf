@@ -23,16 +23,16 @@ function BookDisplay({ prop }: {
                 }
                 <h1 className="fs32 maxw80p text-overflow">{book.title}</h1>
                 <h2 className="fs24 maxw80p text-overflow">{book.author}</h2>
-                <div id="genres" className="flex-row gap8 maxw80">
-                    {book.genres.map((genre, i) => (
-                        <h2 key={`genre${i}`} className="fs16 text-overflow">{genre}</h2>
-                    ))}
+                <div className="flex-row gap8 maxw80p text-overflow">
+                    {book.genres.map(
+                        (genre, i) => <h2 key={i} className="fs16 underline text-overflow">{genre}</h2>
+                    )}
                 </div>
                 <div className="flex-row gap12 margin-top24">
                     <div title="Edit book"
                         className="nav-icon"
                         onClick={() => prop.fnEdit(FormType.Edit)}>
-                            <p className="fs24">✏️</p>
+                            <p className="fs32 nf-icons">󰙏</p>
                     </div>
                     <div className="separator-vertical"></div>
                     <div title="Remove book"
@@ -47,7 +47,7 @@ function BookDisplay({ prop }: {
     else {
         return (
             <section className="bookdisplay center-xy flex-col gap12">
-                <h1 className="fs20">📖</h1>
+                <h1 className="fs40 nf-icons"></h1>
                 <h1 className="fs20">Book Display</h1>
                 <h2 className="fs16">Choose a book from  the list to learn more</h2>
             </section>

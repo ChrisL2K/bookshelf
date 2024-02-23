@@ -37,6 +37,9 @@ nav {
 .nav-icon {
     padding: 8px;
     width: 30px;
+    height: 30px;
+
+    & p { line-height: 3rem; }
 }
 
 .nav-icon:active {

@@ -14,24 +14,9 @@
         justify-content: center;
 
         & input { background-color: #00c896; }
-
         & button { background-color: #e16134; }
-
         & :active { background-color: white; }
     }
-}
-
-#genres {
-    & h2 {
-        border-radius: 100vh;
-        padding: 4px 8px;
-    }
-
-    & h2:nth-child(1) { background-color: #70878d; }
-
-    & h2:nth-child(2) { background-color: #80a1a1; }
-
-    & h2:nth-child(3) { background-color: #97bcaf; }
 }
 
 #status {
@@ -69,3 +54,5 @@
         border-bottom: 1px solid rgb(255,255,255, 10%);
     }
 }
+
+.underline { text-decoration: 2px underline rgba(255,255,255, 25%); }

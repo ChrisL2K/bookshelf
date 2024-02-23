@@ -160,21 +160,21 @@ function sortStateReducer(state: SortState) {
 			return {
 				nextType: SortMode.AtoZ,
 				title: "Sorted by date added: most recent first",
-				imgPath: "src/assets/Sort.png",
+				imgPath: "src/assets/SortR.png",
 				nextFn: (array: Book[]) => sortList(array, SortMode.AtoZ)
 			};
 		case SortMode.AtoZ:
 			return {
 				nextType: SortMode.ZtoA,
 				title: "Sorted by title: ascending",
-				imgPath: "src/assets/Sort.png",
+				imgPath: "src/assets/SortAZ.png",
 				nextFn: (array: Book[]) => sortList(array, SortMode.ZtoA)
 			};
 		case SortMode.ZtoA:
 			return {
 				nextType: SortMode.EarliestAdded,
 				title: "Sorted by title: descending",
-				imgPath: "src/assets/Sort.png",
+				imgPath: "src/assets/SortZA.png",
 				nextFn: (array: Book[]) => sortList(array, SortMode.EarliestAdded)
 			};
 	}
