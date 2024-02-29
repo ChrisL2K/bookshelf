@@ -1,3 +1,9 @@
+#root {
+    margin: 0;
+    height: 100vh;
+    text-align: center;
+}
+
 #addform {
     align-items: flex-start;
 
@@ -56,3 +62,16 @@
 }
 
 .underline { text-decoration: 2px underline rgba(255,255,255, 25%); }
+
+.nav-icon {
+    padding: 8px;
+    width: 30px;
+    height: 30px;
+
+    & p { line-height: 3rem; }
+}
+
+.nav-icon:active {
+    background-color: rgb(255,255,255, 5%);
+    border-radius: 100vh;
+}

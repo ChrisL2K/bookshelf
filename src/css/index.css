@@ -1,8 +1,10 @@
 @import url('https://fonts.googleapis.com/css2?family=Ubuntu&display=swap');
+@import url("/src/css/Components.css");
+@import url("/src/css/App.css");
 
 @font-face {
     font-family: 'NerdFont Icons';
-    src: url('./assets/MesloLGLNerdFontMono-Regular.ttf');
+    src: url('../assets/MesloLGLNerdFontMono-Regular.ttf');
 }
 
 * { margin: 0; }

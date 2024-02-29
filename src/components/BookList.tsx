@@ -1,18 +1,16 @@
+import { useContext } from 'react';
 import BookListItem from './BookListItem';
-import './Components.css';
-import { Book } from '../types';
+import { CTXT_BooksList } from '../modules/contexts';
 
-function BookList({ prop }: {
-    prop: {
-        itemsList: Book[],
-        fnDisplay: (book: Book) => void
-    }
-}) {
-    if (prop.itemsList.length > 0) {
+export default function BookList() {
+    const ctxt = useContext(CTXT_BooksList);
+
+    if (ctxt && ctxt.list.length > 0) {
+        const {list} = ctxt;
         return (
             <section className="booklist flex-col -list">
-                {prop.itemsList.map(book => (
-                    <BookListItem key={book.id} book={book} displayBook={prop.fnDisplay} />
+                {list.map(book => (
+                    <BookListItem key={book.id} book={book} />
                 ))}
             </section>
         );
@@ -26,5 +24,3 @@ function BookList({ prop }: {
         );
     }
 }
-
-export default BookList;

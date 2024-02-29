@@ -1,6 +1,6 @@
 import { Book, SortMode } from "../types";
 
-function sortList(array: Book[], mode: SortMode): Book[] {
+export default function sortList(array: Book[], mode: SortMode): Book[] {
     const compareFnAsc = (a: Book, b: Book): number => {
         const [vA, vB] = (mode === SortMode.AtoZ || mode === SortMode.ZtoA) ?
             [a.title, b.title] : [a.dateAdded, b.dateAdded];
@@ -14,5 +14,3 @@ function sortList(array: Book[], mode: SortMode): Book[] {
     else if ([SortMode.ZtoA, SortMode.LatestAdded].includes(mode) && array.length > 0) return array.slice().sort(compareFnAsc).reverse();
     else return array;
 }
-
-export default sortList;
